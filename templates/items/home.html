@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {{ message }}
+<table>
+    {% for i in movies %}
+        <tr>
+            <td>{{ i.movie }}</td>
+            <td>{{ i.cinema }}</td>
+            <td>{{ i.session }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
