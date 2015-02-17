@@ -16,10 +16,10 @@ class MongoService():
     def fetch_all(self):
         return self.daily.find().sort('session', pymongo.ASCENDING)
 
-    def fetch(self):
-        return self.fetch(self.LIMIT)
+    def fetch_default_limit(self):
+        return self.fetch_limit(self.LIMIT)
 
-    def fetch(self, limit):
+    def fetch_limit(self, limit):
         return self.daily.find().sort('session', pymongo.ASCENDING).limit(limit)
 
     def fetch_page(self, offset, count):

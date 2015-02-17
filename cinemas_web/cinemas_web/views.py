@@ -17,7 +17,7 @@ def home(request):
 
 def start(request):
     json_docs = []
-    for doc in mongo.fetch_all():
+    for doc in mongo.fetch_default_limit():
         json_doc = json.dumps(doc, default=json_util.default)
         json_docs.append(json_doc)
     return HttpResponse(json_docs, content_type="application/json")
