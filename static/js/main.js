@@ -1,3 +1,4 @@
 window.App = {
-    Models : {}
+    Models : {},
+    Views : {}
 };
