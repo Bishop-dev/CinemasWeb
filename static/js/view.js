@@ -5,8 +5,9 @@ App.Views.MovieView = Backbone.View.extend({
     },
     // working tag (even if not created yet)
     tagName: 'li',
+    template: _.template($('#movie-tmpl').html()),
     // rendering - create content of tag using model
     render: function() {
-        this.$el.html(this.model.get('name'));
+        this.$el.html(this.template(this.model.toJSON()));
     }
 });
