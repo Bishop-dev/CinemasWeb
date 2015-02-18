@@ -20,10 +20,10 @@
     var movie = new App.Models.Movie();
     var view = new App.Views.MovieView({model: movie});
     view.render();
-    console.log(view);
-    var collection = new App.Collections.MovieCollection();
-    collection.add(movie);
-    console.log(collection.at(0));
+    var movies = new App.Collections.MovieCollection();
+    movies.add(movie);
+    var moviesView = new App.Views.MoviesView({collection: movies});
+    $(document.body).append(moviesView.render().el);
 </script>
 </body>
 </html>
