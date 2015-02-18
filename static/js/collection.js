@@ -1,3 +1,3 @@
-App.Collection.MovieCollection = Backbone.Collection.extend({
+App.Collections.MovieCollection = Backbone.Collection.extend({
     model : App.Models.Movie
 });
