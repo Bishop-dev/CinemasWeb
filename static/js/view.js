@@ -4,6 +4,8 @@ App.Views.MovieView = Backbone.View.extend({
     template: _.template($('#movie-tmpl').html()),
     // rendering - create content of tag using model
     render: function() {
+        var time = this.model.get('session');
+        this.model.set('session', this.convertDate(time));
         this.$el.html(this.template(this.model.toJSON()));
         return this;
     },
@@ -11,8 +13,12 @@ App.Views.MovieView = Backbone.View.extend({
         // 'hover span' : 'showAlert'
         'click' : 'showAlert'
     },
-    showAlert: function() {
-        alert('!');
+    convertDate: function(miliseconds) {
+        var date = new Date(miliseconds.$date);
+        var d = date.getDate();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        return d + ' ' + h + ':' + m;
     }
 });
 

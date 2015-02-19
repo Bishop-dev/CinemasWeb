@@ -1,4 +1,5 @@
 import time
+import datetime
 import pymongo
 from cinemas_web.settings import MONGODB
 
@@ -20,7 +21,7 @@ class MongoService():
         return self.fetch_limit(self.LIMIT)
 
     def fetch_limit(self, limit):
-        return self.daily.find().sort('session', pymongo.ASCENDING).limit(limit)
+        return self.daily.find({'session': {'$gt': datetime.datetime.now()}}).sort('session', pymongo.ASCENDING).limit(limit)
 
     def fetch_page(self, offset, count):
         return self.daily.find(count=count, offset=offset)
