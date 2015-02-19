@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <script type="text/template" id="movie-tmpl">
-    <%= name %> - <%= duration %>
+    <%= _id %> <%= name %> <%= session %> <%= cinema %>
 </script>
 <script src="../../static/js/jquery-1.11.2.min.js"></script>
 <script src="../../static/js/underscore-min.js" type="text/javascript"></script>
@@ -17,13 +17,13 @@
 <body>
 
 <script>
-    var movie = new App.Models.Movie();
-    var view = new App.Views.MovieView({model: movie});
-    view.render();
     var movies = new App.Collections.MovieCollection();
-    movies.add(movie);
-    var moviesView = new App.Views.MoviesView({collection: movies});
-    $(document.body).append(moviesView.render().el);
+    movies.fetch().then(function() {
+        var moviesView = new App.Views.MoviesView({collection: movies});
+        $(document.body).append(moviesView.render().el);
+    });
 </script>
+
+
 </body>
 </html>

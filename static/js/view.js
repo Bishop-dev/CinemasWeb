@@ -1,8 +1,4 @@
 App.Views.MovieView = Backbone.View.extend({
-    // invokes automatically on initialisation
-    initialize: function() {
-        console.log('view initialized');
-    },
     // working tag (even if not created yet)
     tagName: 'li',
     template: _.template($('#movie-tmpl').html()),
@@ -10,13 +6,17 @@ App.Views.MovieView = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template(this.model.toJSON()));
         return this;
+    },
+    events: {
+        // 'hover span' : 'showAlert'
+        'click' : 'showAlert'
+    },
+    showAlert: function() {
+        alert('!');
     }
 });
 
 App.Views.MoviesView = Backbone.View.extend({
-    initialize: function() {
-        console.log('movies collection initialized');
-    },
     tagName: 'ul',
     render: function() {
         // loop each movie in collection
