@@ -11,7 +11,9 @@ App.Views.MovieView = Backbone.View.extend({
     },
     convertDate: function(miliseconds) {
         var d = new Date(miliseconds.$date);
-        return d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes();
+        var h = d.getHours();
+        var m = d.getMinutes();
+        return (h < 10 ? '0' + h : h) + ':' + (m < 10 ? '0' + m : m);
     }
 });
 
