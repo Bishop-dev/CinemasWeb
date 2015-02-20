@@ -9,16 +9,9 @@ App.Views.MovieView = Backbone.View.extend({
         this.$el.html(this.template(this.model.toJSON()));
         return this;
     },
-    events: {
-        // 'hover span' : 'showAlert'
-        'click' : 'showAlert'
-    },
     convertDate: function(miliseconds) {
-        var date = new Date(miliseconds.$date);
-        var d = date.getDate();
-        var h = date.getHours();
-        var m = date.getMinutes();
-        return d + ' ' + h + ':' + m;
+        var d = new Date(miliseconds.$date);
+        return d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes();
     }
 });
 
