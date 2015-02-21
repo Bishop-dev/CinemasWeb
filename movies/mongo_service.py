@@ -5,7 +5,7 @@ from cinemas_web.settings import MONGODB
 
 
 class MongoService():
-    LIMIT = 20
+    LIMIT = 40
 
     def __init__(self):
         time_pattern = time.strftime('%d_%m_%y')
