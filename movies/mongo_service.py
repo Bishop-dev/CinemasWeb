@@ -21,13 +21,7 @@ class MongoService():
         return self.fetch_limit(self.LIMIT)
 
     def fetch_limit(self, limit):
-        return self.daily.find({'session': {'$gt': datetime.datetime.now()}}).sort('session', pymongo.ASCENDING).limit(limit)
+        return self.daily.find({'session': {'$gt': datetime.datetime.now()}}).limit(limit)
 
-    def fetch_page(self, offset, count):
-        return self.daily.find(count=count, offset=offset)
-
-    def fetch_compressed_default_limit(self):
-        return self.db.system_js.compress(self.LIMIT)
-
-    def ensure_compressed_stored_js(self):
-        self.db.system_js.compress = "function compress(e){function n(e,n){return e.session==n.session&&e.name==n.name&&e._id!=n._id&&e.cinema!=n.cinema}function i(e,n){var i=e.cinema'string'==typeof i?e.cinema=[i]:e.cinema.push(n.cinema)}for(var t=db.daily_20_02_15.find({session:{$gt:new Date}}).limit(2*e),s=[];t.hasNext();){var a=t.next();if(0!=s.lenght){var r=s[s.length-1];n(r,a)?i(r,a):s.push(a)}else s.push(a);if(t.hasNext()){var f=t.next();if(n(f,a))i(s[s.length-1],f);else{if(s.length==e)return!0;s.push(f)}}for(;t.hasNext()&&s.length==e;){var h=t.next(),c=s[29];if(!n(c,h))break;i(c,h)}}return s}"
+    def fetch_page(self, _id):
+        return self.daily.find({'_id': {'$gt': _id}, 'session': {'$gt': datetime.datetime.now()}}).limit(self.LIMIT)
