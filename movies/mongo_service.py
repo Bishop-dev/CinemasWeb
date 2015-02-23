@@ -12,7 +12,6 @@ class MongoService():
         connection = pymongo.Connection(MONGODB['HOST'], MONGODB['PORT'])
         self.db = connection[MONGODB['DB']]
         self.daily = self.db[MONGODB['MONGODB_COLLECTION_DAILY'] + time_pattern]
-        self.active = self.db[MONGODB['MONGODB_COLLECTION_ACTIVE'] + time_pattern]
 
     def fetch_all(self):
         return self.daily.find().sort('session', pymongo.ASCENDING)
@@ -24,4 +23,4 @@ class MongoService():
         return self.daily.find({'session': {'$gt': datetime.datetime.now()}}).limit(limit)
 
     def fetch_page(self, _id):
-        return self.daily.find({'_id': {'$gt': _id}, 'session': {'$gt': datetime.datetime.now()}}).limit(self.LIMIT)
+        return self.daily.find({'_id': {'$gt': _id}}).limit(self.LIMIT)
