@@ -3,13 +3,13 @@ App.Views.MovieView = Backbone.View.extend({
     tagName: 'li',
     template: _.template($('#movie-tmpl').html()),
     // rendering - create content of tag using model
-    render: function() {
+    render: function () {
         var time = this.model.get('session');
         this.model.set('session', this.convertDate(time));
         this.$el.html(this.template(this.model.toJSON()));
         return this;
     },
-    convertDate: function(miliseconds) {
+    convertDate: function (miliseconds) {
         var d = new Date(miliseconds.$date);
         var h = d.getHours();
         var m = d.getMinutes();
@@ -19,9 +19,18 @@ App.Views.MovieView = Backbone.View.extend({
 
 App.Views.MoviesView = Backbone.View.extend({
     tagName: 'ul',
-    render: function() {
+    initialize: function () {
+        _.bindAll(this, 'scroll');
+        $(window).scroll(this.scroll);
+    },
+    scroll: function () {
+        if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+            console.log("scrolling...");
+        }
+    },
+    render: function () {
         // loop each movie in collection
-        this.collection.each(function(movie){
+        this.collection.each(function (movie) {
             // create view for each movie in collection
             var movieView = new App.Views.MovieView({model: movie});
             // append view of item to view of collection
