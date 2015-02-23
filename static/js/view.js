@@ -18,6 +18,7 @@ App.Views.MovieView = Backbone.View.extend({
 });
 
 App.Views.MoviesView = Backbone.View.extend({
+    pageSize: 40,
     tagName: 'ul',
     initialize: function () {
         _.bindAll(this, 'scroll');
@@ -25,7 +26,15 @@ App.Views.MoviesView = Backbone.View.extend({
     },
     scroll: function () {
         if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-            console.log("scrolling...");
+            var self = this;
+            var models = this.collection.models;
+            var lastMovieId = models[models.length - 1].get('_id').$oid;
+            var url = this.collection.additionalFetchURL + lastMovieId + '/';
+            // remove = false - to not to remove existing items
+            // overriding url
+            this.collection.fetch({remove: false, url: url}).then(function() {
+                self.renderAdditional();
+            });
         }
     },
     render: function () {
@@ -38,6 +47,17 @@ App.Views.MoviesView = Backbone.View.extend({
             // use context 'this' of MoviesView
             // anonymous function 'function(movie){' use WINDOW as default context
         }, this);
+        return this;
+    },
+    renderAdditional: function() {
+        var coll = this.collection;
+        var len = this.collection.length;
+        coll = this.collection.slice(len - this.pageSize, len);
+        for (var i = 0; i < coll.length; i++) {
+            var movie = coll[i];
+            var movieView = new App.Views.MovieView({model: movie});
+            this.$el.append(movieView.render().el);
+        }
         return this;
     }
 });
