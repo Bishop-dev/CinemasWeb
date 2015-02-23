@@ -1,10 +1,12 @@
+import json
+
 from bson.objectid import ObjectId
 from django.http.response import HttpResponse
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from movies.mongo_service import MongoService
-import json
+from cinemas_web.mongo_service import MongoService
 from bson import json_util
+
 
 mongo = MongoService()
 
