@@ -6,7 +6,11 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/style.css">
 </head>
 <script type="text/template" id="movie-tmpl">
-        <div class="session"><%= session %></div><div class="name"><%= name %></div><div class="cinema"><%= cinema %></div>
+       <div class="record">
+           <div class="session"><%= session %></div>
+           <div class="name"><%= name %></div>
+           <div class="cinema"><%= cinema %></div>
+       </div>
 </script>
 <script src="../../static/js/jquery-1.11.2.min.js"></script>
 <script src="../../static/js/underscore-min.js" type="text/javascript"></script>
@@ -24,7 +28,6 @@
         $(document.body).append(moviesView.render().el);
     });
 </script>
-
 
 </body>
 </html>

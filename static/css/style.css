@@ -1,23 +1,32 @@
-li {
-    list-style-type: none;
-    padding: 5px;
-    margin: 35px;
-    width: 650px;
-    /*border-width: medium;
-    border-style: solid;
-    border-color: darkred;*/
+.record {
+    margin-bottom: 20px;
 }
-.session {
+
+.record div {
     float: left;
-    width: 50px;
+    padding-top: 16px;
+}
+
+.session {
+    padding-right: 40px;
     padding-left: 10px;
 }
-.name {
-    width: 300px;
-    float:left;
-    text-align: center;
-}
-.cinema {
+
+.record .cinema {
     float: right;
-    padding-right: 10px;
+    padding: 10px 40px;
+    margin: 5px;
+    background-color: indianred;
+}
+
+ul {
+    list-style-type: none;
+    width: 700px;
+    font-family: Arial;
+    font-size: 20px;
+}
+
+ul li {
+    padding-bottom: 53px;
+    background-color: limegreen;
 }
