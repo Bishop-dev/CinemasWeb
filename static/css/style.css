@@ -5,17 +5,22 @@
 .record div {
     float: left;
     padding-top: 16px;
+	border-radius: 10px;
 }
 
 .session {
-    padding-right: 40px;
+    padding-right: 10px;
     padding-left: 10px;
+	padding-bottom: 14px;
+	margin-right: 40px;
+	background-color: limegreen;
 }
 
 .record .cinema {
     float: right;
     padding: 10px 40px;
     margin: 5px;
+	-moz-margin: 13px 10px;
     background-color: indianred;
 }
 
@@ -28,5 +33,6 @@ ul {
 
 ul li {
     padding-bottom: 53px;
-    background-color: limegreen;
+    background-color: #eee;
+	border-radius: 10px;
 }
