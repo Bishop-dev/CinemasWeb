@@ -25,9 +25,9 @@
     var movies = new App.Collections.MovieCollection();
     movies.fetch().then(function() {
         var moviesView = new App.Views.MoviesView({collection: movies});
-        $(document.body).append(moviesView.render().el);
+        $('#wrapper').append(moviesView.render().el);
     });
 </script>
-
+    <div id="wrapper"></div>
 </body>
 </html>
